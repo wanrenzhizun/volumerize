@@ -1,0 +1,26 @@
+name: Build Image(手动)
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号：'
+        required: true
+        default: '1.7.4'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Push image to Docker Hub
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: ${{ secrets.DOCKER_USERNAME }}/volumerize
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          tags: "openvpn-latest,openvpn-${{github.event.inputs.version}}"
+          dockerfile: Dockerfile
