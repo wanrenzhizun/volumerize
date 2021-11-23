@@ -2,7 +2,7 @@
 
 set -o errexit
 
-DUPLICITY_COMMAND="duplicity"
+DUPLICITY_COMMAND="eval duplicity"
 
 DUPLICITY_OPTIONS=""
 
