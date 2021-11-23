@@ -105,6 +105,7 @@ RUN apk upgrade --update && \
     curl -fSL "https://code.launchpad.net/duplicity/${DUPLICITY_SERIES}-series/${DUPLICITY_VERSION}/+download/duplicity-${DUPLICITY_VERSION}.tar.gz" -o /tmp/duplicity.tar.gz && \
     export DUPLICITY_SHA=2d048377c839ae56fc2828997c9aa7ba8c339e815e1e2ae738652037508ec276a2c72583687da34408fadd4839011e242b51bc73cca954227fc51db5683c258c && \
     echo 'Calculated checksum: '$(sha512sum /tmp/duplicity.tar.gz) && \
+    echo 'StrictHostKeyChecking no' >/etc/ssh/ssh_config && \
     # echo "$DUPLICITY_SHA  /tmp/duplicity.tar.gz" | sha512sum -c - && \
     tar -xzvf /tmp/duplicity.tar.gz -C /tmp && \
     cd /tmp/duplicity-${DUPLICITY_VERSION} && python3 setup.py install && \
