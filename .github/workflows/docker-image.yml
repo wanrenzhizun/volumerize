@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Push image to Docker Hub
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: ${{ secrets.DOCKER_USERNAME }}/volumerize
           username: ${{ secrets.DOCKER_USERNAME }}
